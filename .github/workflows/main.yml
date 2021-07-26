@@ -25,9 +25,9 @@ jobs:
 
     steps:
 
-    - name: send custom message with args
-            uses: appleboy/telegram-action@master
-            with:
+      - name: send custom message with args
+        uses: appleboy/telegram-action@master
+        with:
                 to: ${{ secrets.TELEGRAM_TO }}
                 token: ${{ secrets.TELEGRAM_TOKEN }}
                 args: The ${{ github.event_name }} event triggered first step.
@@ -47,7 +47,7 @@ jobs:
 
       - name: send custom message with args
         run: exit 1
-              uses: appleboy/telegram-action@master
+        uses: appleboy/telegram-action@master
               if: always()
                   env:
                      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
