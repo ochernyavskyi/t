@@ -25,11 +25,11 @@
       "workingDirectory": null,
       "secrets": null,
       "dockerSecurityOptions": null,
-      "memory": 256,
+      "memory": null,
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "721000729231.dkr.ecr.eu-central-1.amazonaws.com/app1:v2",
+      "image": "721000729231.dkr.ecr.eu-central-1.amazonaws.com/my-repo",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -46,17 +46,17 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "my-repo"
+      "name": "My-test-web"
     }
   ],
   "placementConstraints": [],
-  "memory": null,
+  "memory": "256",
   "taskRoleArn": null,
   "compatibilities": [
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:721000729231:task-definition/My-test-web:1",
+  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:721000729231:task-definition/My-test-web:10",
   "family": "My-test-web",
   "requiresAttributes": [
     {
@@ -70,9 +70,9 @@
   "requiresCompatibilities": [
     "EC2"
   ],
-  "networkMode": "bridge",
-  "cpu": null,
-  "revision": 1,
+  "networkMode": null,
+  "cpu": "1024",
+  "revision": 10,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,

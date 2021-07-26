@@ -91,15 +91,15 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: my-repo
+          container-name: My-test-web
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ECS-Regular-Claster-service
-          cluster: ECS-Regular-Claster
+          service: ECS-Regular-Claster2-service
+          cluster: ECS-Regular-Claster2
           wait-for-service-stability: true
 
 #      - name: Copy deployment package to S3
