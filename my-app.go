@@ -1,14 +1,5 @@
 package main
-import (
-    "net/http"
-    "fmt"
-    )
-
-type msg string
-func (m msg) ServeHTTP(resp http.ResponseWriter, req *http.Request) {
-   fmt.Fprint(resp, m)
-}
+import "fmt"
 func main() {
-    msgHandler := msg("Hello World 2 !")
-    http.ListenAndServe("0.0.0.0:8080", msgHandler)
+    fmt.Println("hello world")
 }
