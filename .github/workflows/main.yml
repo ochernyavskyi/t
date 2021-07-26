@@ -24,26 +24,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: send custom message with args
+            uses: appleboy/telegram-action@master
+            with:
+                to: ${{ secrets.TELEGRAM_TO }}
+                token: ${{ secrets.TELEGRAM_TOKEN }}
+                args: The ${{ github.event_name }} event triggered first step.
+
       - name: Git clone our repo
         uses: actions/checkout@v2
         with:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Lint Code Base
+#        uses: github/super-linter@v4
+#        env:
+#          VALIDATE_ALL_CODEBASE: false
+#          DEFAULT_BRANCH: main
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: send custom message with args
-        uses: appleboy/telegram-action@master
-        with:
-            to: ${{ secrets.TELEGRAM_TO }}
-            token: ${{ secrets.TELEGRAM_TOKEN }}
-            args: The ${{ github.event_name }} event triggered first step.
-
+        run: exit 1
+              uses: appleboy/telegram-action@master
+              if: always()
+                  env:
+                     TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+                     TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
+                  with:
+                     status: ${{job.status}}
 
 #      - name: Create Zip deployment package
 #        run: zip -r ${{ env.DeployPackageName}} ./ -x *.git*
