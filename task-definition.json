@@ -46,7 +46,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "My-test-web"
+      "name": "sample-app"
     }
   ],
   "placementConstraints": [],
