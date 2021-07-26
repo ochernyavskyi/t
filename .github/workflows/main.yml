@@ -44,9 +44,8 @@ jobs:
 #          VALIDATE_ALL_CODEBASE: false
 #          DEFAULT_BRANCH: main
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: send custom message with args
-        if: ${{ failure() }}
+      - name: The job has failed
+        if: ${{ success() }}
         uses: appleboy/telegram-action@master
         with:
                 to: ${{ secrets.TELEGRAM_TO }}
