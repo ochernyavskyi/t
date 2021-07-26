@@ -97,7 +97,7 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: sample-app-service
-          cluster: default
+          cluster: ECS-Regular-Claster
           wait-for-service-stability: true
 
 #      - name: Copy deployment package to S3
