@@ -76,30 +76,46 @@ jobs:
         with:
                to: ${{ secrets.TELEGRAM_TO }}
                token: ${{ secrets.TELEGRAM_TOKEN }}
-               args: CI process has finished succesfully.
-#
-#  cd-part:
-#    runs-on: ubuntu-latest
-#    needs: [ci-part]
-#
-#    steps:
-#      - name: Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.MY_AWS_ACCESS_KEY }}
-#          aws-secret-access-key: ${{ secrets.MY_AWS_SECRET_KEY }}
-#          aws-region: ${{ env.AWS_Region_Name }}
-#
-#      - name: Create new elastic application
-#        run : |
-#          aws elasticbeanstalk create-application-version \
-#          --application-name ${{ env.EB_Application_Name }} \
-#          --source-bundle S3Bucket="${{ env.AWS_S3_Bucket_Name }}",S3Key="${{ env.DeployPackageName }}" \
-#          --version-label "Ver-${{ github.sha }}" \
-#          --description "CommitSHA-${{ github.sha }}"
-#
-#      - name: Deploy new application
-#        run: aws elasticbeanstalk update-environment --environment-name ${{ EB_env.Env }} --version-label "Ver-${{ github.sha }}"
-#
-#      - name: Print happy message for CI
-#        run :  echo "CD part finished succesfully"
+               args: CI part finished succesfully.
+
+
+  cd-part:
+    runs-on: ubuntu-latest
+    needs: [ci-part]
+
+    steps:
+
+      - name: send custom message with args
+        uses: appleboy/telegram-action@master
+        with:
+             to: ${{ secrets.TELEGRAM_TO }}
+             token: ${{ secrets.TELEGRAM_TOKEN }}
+             args: The ${{ github.event_name }} event triggered first step at CD.
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.MY_AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.MY_AWS_SECRET_KEY }}
+          aws-region: ${{ env.AWS_Region_Name }}
+
+      - name: Create new elastic application
+        run : |
+          aws elasticbeanstalk create-application-version \
+          --application-name ${{ env.EB_Application_Name }} \
+          --source-bundle S3Bucket="${{ env.AWS_S3_Bucket_Name }}",S3Key="${{ env.DeployPackageName }}" \
+          --version-label "Ver-${{ github.sha }}" \
+          --description "CommitSHA-${{ github.sha }}"
+
+      - name: Deploy new application
+        run: aws elasticbeanstalk update-environment --environment-name ${{ EB_env.Env }} --version-label "Ver-${{ github.sha }}"
+
+      - name: Print happy message for CI
+        run :  echo "CD part finished succesfully"
+
+      - name: send custom message with args
+        uses: appleboy/telegram-action@master
+        with:
+             to: ${{ secrets.TELEGRAM_TO }}
+             token: ${{ secrets.TELEGRAM_TOKEN }}
+             args: CI/CD has completed succesfully.
