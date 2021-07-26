@@ -45,7 +45,7 @@ jobs:
 #          DEFAULT_BRANCH: main
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: The job has failed
-        if: ${{ success() }}
+        if: ${{ failure() }}
         uses: appleboy/telegram-action@master
         with:
                 to: ${{ secrets.TELEGRAM_TO }}
