@@ -1,3 +1,3 @@
 <?php
 
-echo 'Hello world 21:40!';
+echo 'Hello world yahoo!';
