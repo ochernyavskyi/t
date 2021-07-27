@@ -95,7 +95,7 @@ jobs:
         with:
           task-definition: ${{ steps.MyTaskDefinition.outputs.task-definition }}
           service: MyServiceName
-          cluster: ecs-devops-sandbox-cluster
+          cluster: ecs-devops-sandbox-cluster2
           wait-for-service-stability: true
 
 #      - name: Copy deployment package to S3
