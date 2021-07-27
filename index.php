@@ -1,3 +1,3 @@
 <?php
 
-echo 'Hi 23:10';
+echo 'Hi 2';
