@@ -71,7 +71,7 @@
     "EC2"
   ],
   "networkMode": "bridge",
-  "cpu": "1024",
+  "cpu": "8192",
   "revision": 1,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
